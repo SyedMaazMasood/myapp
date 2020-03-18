@@ -1,72 +1,72 @@
-import React, { Component } from 'react';
-import Header from './components/layout/Header';
-import AddTodo from './components/AddTodo';
-import Todos from './components/Todos';
-import uuid from 'uuid';
+import React, { Component } from "react";
+import Header from "./components/layout/Header";
+import AddTodo from "./components/AddTodo";
+import Todos from "./components/Todos";
+import uuid from "uuid";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
-
   state = {
     todos: [
       {
         id: uuid.v4(),
-        title: 'Post1',
+        title: "Post1",
         completed: false
       },
       {
         id: uuid.v4(),
-        title: 'Post2',
+        title: "Post2",
         completed: false
       },
       {
         id: uuid.v4(),
-        title: 'Post3',
+        title: "Post3",
         completed: false
-      },
+      }
     ]
-  }
+  };
 
   // Toggle Complete
-  markComplete = (id) => {
+  markComplete = id => {
     this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.id === id) {
-          todo.completed = !todo.completed
+          todo.completed = !todo.completed;
         }
         return todo;
       })
     });
-  }
+  };
 
   // Delete Todo
-  delTodo = (id) => {
+  delTodo = id => {
     this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id
-        !== id)]
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
-  }
+  };
 
-  // Add Todo
-  addTodo = (title) => {
+  // Add Post
+  addPost = title => {
     const newTodo = {
       id: uuid.v4(),
       title,
-      completed: false 
-    }
+      completed: false
+    };
     this.setState({ todos: [...this.state.todos, newTodo] });
-  }
+  };
 
   render() {
     return (
-      <div className="App"> 
+      <div className="App">
         <div className="container">
           <Header />
-          <AddTodo addTodo={this.addTodo} />
-          <Todos todos={this.state.todos}
+          <AddTodo addTodo={this.addPost} />
+          <Todos
+            todos={this.state.todos}
             markComplete={this.markComplete}
-            delTodo={this.delTodo} />
+            delTodo={this.delTodo}
+          />
         </div>
       </div>
     );
