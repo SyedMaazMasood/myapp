@@ -7,9 +7,9 @@ const ItemSchema = new Schema({
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now
+  post: {
+    type: String,
+    required: true
   }
 });
 
