@@ -1,16 +1,19 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+// const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
 
-// Create Schema
-const ItemSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  post: {
-    type: String,
-    required: true
-  }
-});
+// // Create Schema
+// const ItemSchema = new Schema(
+//   {
+//     email: {
+//       type: String
+//     },
+//     password: {
+//       type: String
+//     }
+//   },
+//   {
+//     collection: "items"
+//   }
+// );
 
-module.exports = Item = mongoose.model("item", ItemSchema);
+// module.exports = Item = mongoose.model("item", ItemSchema);
