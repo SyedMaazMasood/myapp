@@ -1,7 +1,7 @@
 import React from "react";
 import createHistory from "history/createBrowserHistory";
 import { Router, Route, Switch, withRouter } from "react-router-dom";
-//import withAnalytics, { initAnalytics } from "react-with-analytics";
+import withAnalytics, { initAnalytics } from "react-with-analytics";
 
 // import DiscoverPage from "../containers/DiscoverPage";
 // import FollowingPage from "../containers/FollowingPage";

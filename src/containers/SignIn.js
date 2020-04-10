@@ -77,6 +77,16 @@ const useStyles = (theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  link: {
+    textDecoration: "none",
+  },
+  footer: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  errorText: {
+    color: "#D50000",
+    marginTop: "5px",
+  },
 });
 
 class SignIn extends Component {
