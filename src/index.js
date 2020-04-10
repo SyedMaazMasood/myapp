@@ -1,36 +1,34 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import Header from "./components/layout/Header";
-import Center from "./components/layout/Center";
+import jwtDecode from "jwt-decode";
+import { Provider } from "react-redux";
+import serviceWorker from "./serviceWorker";
 
-const btnText = "Search";
+import App from "./components/App";
+import createStore from "./store";
+import setAuthToken from "./setAuthToken";
+import { logoutUser, setCurrentUser } from "./actions/auth.actions";
+import "./index.css";
+
+const store = createStore();
+
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+  const decoded = jwtDecode(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(decoded));
+
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    store.dispatch(logoutUser());
+    window.location.href = "/login";
+  }
+}
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
     <App />
-  </BrowserRouter>,
+  </Provider>,
   document.getElementById("root")
 );
 
-serviceWorker.unregister();
-
-function Greeting() {
-  return (
-    <section>
-      <App />
-    </section>
-  );
-}
-
-ReactDOM.render(<Greeting />, document.getElementById("root"));
-/*
-      <Header />
-      <center>
-        <button>{btnText}</button>
-      </center>
-      <Center />
-      */
+serviceWorker();
