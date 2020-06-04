@@ -102,8 +102,8 @@ class SignUp extends Component {
       password,
       passwordConfirm,
     };
-    const { registerUser } = this.props;
-    registerUser(user);
+    const { createUser } = this.props;
+    createUser(user);
   };
 
   render() {
@@ -230,7 +230,7 @@ SignUp.defaultProps = {
 
 SignUp.propTypes = {
   classes: PropTypes.object.isRequired,
-  registerUser: PropTypes.func.isRequired,
+  createUser: PropTypes.func.isRequired,
   errors: PropTypes.object,
 };
 
@@ -240,7 +240,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  registerUser: (user) => dispatch(registerUser(user)),
+  createUser: (user) => dispatch(registerUser(user)),
 });
 
 export default compose(

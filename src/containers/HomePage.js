@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-//import CreatePost from "./CreatePost";
-//import NavbarContainer from "./NavbarContainer";
-//import PostFeed from "./PostFeed";
+import CreatePost from "./CreatePost";
+import NavbarContainer from "./NavbarContainer";
+import PostFeed from "./PostFeed";
 
 export class HomePage extends Component {
   componentDidMount = () => {
@@ -17,10 +17,9 @@ export class HomePage extends Component {
   render() {
     return (
       <div>
-        {/* <NavbarContainer />
+        <NavbarContainer />
         <CreatePost />
-        <PostFeed /> */}
-        Hello
+        <PostFeed />
       </div>
     );
   }

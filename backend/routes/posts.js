@@ -4,11 +4,13 @@ const Post = require("../models/post.model");
 
 const router = new express.Router();
 
+//Get all posts
 router.get("/", async (req, res) => {
   const posts = await Post.find().sort({ timestamp: -1 });
   res.status(200).json(posts);
 });
 
+//Add a post
 router.post("/", async (req, res) => {
   const newPost = new Post({
     authorId: req.body.authorId,
@@ -17,7 +19,7 @@ router.post("/", async (req, res) => {
     likers: [],
     likesCount: 0,
     text: req.body.text,
-    timestamp: new Date().getTime()
+    timestamp: new Date().getTime(),
   });
   try {
     const post = await newPost.save();
@@ -27,6 +29,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+//on poat action
 router.patch("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -40,7 +43,7 @@ router.patch("/:id", (req, res) => {
         id,
         {
           $inc: { likesCount: 1 },
-          $addToSet: { likers: req.body.id }
+          $addToSet: { likers: req.body.id },
         },
         { new: true },
         (err, post) => {
@@ -58,7 +61,7 @@ router.patch("/:id", (req, res) => {
         id,
         {
           $inc: { likesCount: -1 },
-          $pull: { likers: req.body.id }
+          $pull: { likers: req.body.id },
         },
         { new: true },
         (err, post) => {
@@ -80,9 +83,9 @@ router.patch("/:id", (req, res) => {
             comments: {
               commenterId: req.body.commenterId,
               text: req.body.text,
-              timestamp: new Date().getTime()
-            }
-          }
+              timestamp: new Date().getTime(),
+            },
+          },
         },
         { new: true },
         (err, post) => {
@@ -102,9 +105,9 @@ router.patch("/:id", (req, res) => {
         {
           $pull: {
             comments: {
-              _id: req.body.commentId
-            }
-          }
+              _id: req.body.commentId,
+            },
+          },
         },
         { new: true },
         (err, post) => {
@@ -121,14 +124,14 @@ router.patch("/:id", (req, res) => {
     try {
       return Post.findById(id, (err, post) => {
         const { comments } = post;
-        const theComment = comments.find(comment =>
+        const theComment = comments.find((comment) =>
           comment._id.equals(req.body.commentId)
         );
 
         if (!theComment) return res.status(404).send("Comment not found");
         theComment.text = req.body.text;
 
-        return post.save(error => {
+        return post.save((error) => {
           if (error) return res.status(500).send(error);
           return res.status(200).send(post);
         });
