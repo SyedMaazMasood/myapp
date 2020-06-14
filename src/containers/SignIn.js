@@ -8,16 +8,14 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import LockIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-//import { makeStyles } from "@material-ui/core/styles";
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { loginUser } from "../actions/auth.actions";
 
@@ -33,20 +31,9 @@ function Copyright() {
     </Typography>
   );
 }
-//makeStyles(
 const useStyles = (theme) => ({
   layout: {
     height: "100vh",
-
-    //width: "auto",
-    //display: "block", // Fix IE11 issue.
-    //marginLeft: theme.spacing.unit * 3,
-    //marginRight: theme.spacing.unit * 3,
-    // [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-    //   width: 400,
-    //   marginLeft: "auto",
-    //   marginRight: "auto",
-    // },
   },
   image: {
     backgroundImage:
@@ -56,7 +43,6 @@ const useStyles = (theme) => ({
       theme.palette.type === "light"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
-    //backgroundSize: "cover",
     backgroundPosition: "center",
   },
   paper: {
@@ -64,14 +50,13 @@ const useStyles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    //boxShadow: theme.shadows[5],
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -101,7 +86,6 @@ class SignIn extends Component {
     this.setState(() => ({ [name]: value }));
   };
 
-  /* eslint-disable react/destructuring-assignment, react/prop-types */
   componentDidMount = () => {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
@@ -119,7 +103,6 @@ class SignIn extends Component {
       });
     }
   };
-  /* eslint-enable react/destructuring-assignment, react/prop-types */
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -135,7 +118,6 @@ class SignIn extends Component {
   render() {
     const { classes } = this.props;
     const { errors } = this.state;
-    //const classes = useStyles();
 
     return (
       <React.Fragment>
@@ -192,10 +174,10 @@ class SignIn extends Component {
                     error={!!errors.password}
                   />
                   <span className={classes.errorText}>{errors.password}</span>
-                  <FormControlLabel
+                  {/* <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
                     label="Remember me"
-                  />
+                  /> */}
                   <Button
                     type="submit"
                     fullWidth
@@ -206,11 +188,6 @@ class SignIn extends Component {
                     Sign In
                   </Button>
                   <Grid container>
-                    {/* <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid> */}
                     <Grid item>
                       <Typography className={classes.footer} variant="body1">
                         {"Don't have an account? "}
